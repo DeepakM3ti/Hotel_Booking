@@ -1,0 +1,94 @@
+CREATE DATABASE OtelierDb;
+USE OtelierDb;
+CREATE TABLE Hotels (
+    Id INT PRIMARY KEY,
+    Name NVARCHAR(200) NOT NULL,
+    Location NVARCHAR(200) NOT NULL
+);
+INSERT INTO Hotels (Id, Name, Location) VALUES
+(101,'Grand Palace Hotel','Bangalore'),
+(102,'Sea View Resort','Goa'),
+(103,'Mountain Retreat','Manali'),
+(104,'City Comfort Inn','Hyderabad'),
+(105,'Royal Heritage','Jaipur'),
+(106,'Lake Side Hotel','Udaipur'),
+(107,'Metro Stay','Chennai'),
+(108,'Sunrise Residency','Mumbai'),
+(109,'Green Valley Resort','Ooty'),
+(110,'Urban Nest','Pune');
+CREATE TABLE Bookings (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    HotelId INT NOT NULL,
+    GuestName NVARCHAR(200) NOT NULL,
+    CheckInDate DATE NOT NULL,
+    CheckOutDate DATE NOT NULL,
+    CreatedBy NVARCHAR(200) NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE(),
+
+    CONSTRAINT FK_Bookings_Hotel 
+        FOREIGN KEY (HotelId) REFERENCES Hotels(Id)
+        ON DELETE CASCADE
+);
+INSERT INTO Bookings 
+(HotelId, GuestName, CheckInDate, CheckOutDate, CreatedBy)
+VALUES
+
+(101,'Rahul Sharma','2026-03-01','2026-03-05','admin'),
+(101,'Anita Verma','2026-03-10','2026-03-15','staff'),
+(101,'Kiran Patel','2026-04-01','2026-04-03','staff'),
+(101,'Sneha Reddy','2026-04-10','2026-04-14','reception'),
+(101,'Arjun Mehta','2026-05-01','2026-05-04','staff'),
+
+(102,'Priya Singh','2026-03-02','2026-03-06','admin'),
+(102,'Vikram Rao','2026-03-12','2026-03-16','staff'),
+(102,'Neha Kapoor','2026-04-05','2026-04-08','staff'),
+(102,'Rohit Jain','2026-04-15','2026-04-20','reception'),
+(102,'Divya Nair','2026-05-02','2026-05-06','staff'),
+
+(103,'Manoj Kumar','2026-03-03','2026-03-07','admin'),
+(103,'Aisha Khan','2026-03-15','2026-03-18','staff'),
+(103,'Suresh Babu','2026-04-02','2026-04-05','staff'),
+(103,'Meera Joshi','2026-04-12','2026-04-16','reception'),
+(103,'Varun Das','2026-05-05','2026-05-09','staff'),
+
+(104,'Ramesh Gupta','2026-03-04','2026-03-08','admin'),
+(104,'Pooja Shah','2026-03-18','2026-03-21','staff'),
+(104,'Deepak Yadav','2026-04-06','2026-04-09','staff'),
+(104,'Kavya Iyer','2026-04-17','2026-04-22','reception'),
+(104,'Aditya Rao','2026-05-07','2026-05-11','staff'),
+
+(105,'Nisha Malhotra','2026-03-05','2026-03-09','admin'),
+(105,'Harish Pillai','2026-03-20','2026-03-23','staff'),
+(105,'Simran Kaur','2026-04-07','2026-04-11','staff'),
+(105,'Akash Verma','2026-04-18','2026-04-23','reception'),
+(105,'Tanvi Sharma','2026-05-10','2026-05-14','staff'),
+
+(106,'Vivek Anand','2026-03-06','2026-03-10','admin'),
+(106,'Anjali Menon','2026-03-22','2026-03-25','staff'),
+(106,'Sahil Khan','2026-04-08','2026-04-12','staff'),
+(106,'Preeti Mishra','2026-04-20','2026-04-24','reception'),
+(106,'Nitin Arora','2026-05-12','2026-05-16','staff'),
+
+(107,'Ritika Das','2026-03-07','2026-03-11','admin'),
+(107,'Abhishek Roy','2026-03-24','2026-03-27','staff'),
+(107,'Komal Jain','2026-04-09','2026-04-13','staff'),
+(107,'Suraj Patil','2026-04-22','2026-04-26','reception'),
+(107,'Maya Nambiar','2026-05-14','2026-05-18','staff'),
+
+(108,'Arvind Singh','2026-03-08','2026-03-12','admin'),
+(108,'Shruti Kulkarni','2026-03-26','2026-03-29','staff'),
+(108,'Faizan Ali','2026-04-10','2026-04-14','staff'),
+(108,'Lavanya Rao','2026-04-24','2026-04-28','reception'),
+(108,'Rohan Mehta','2026-05-16','2026-05-20','staff'),
+
+(109,'Bhavna Shetty','2026-03-09','2026-03-13','admin'),
+(109,'Kunal Sinha','2026-03-28','2026-03-31','staff'),
+(109,'Aman Verma','2026-04-11','2026-04-15','staff'),
+(109,'Chitra Iyer','2026-04-26','2026-04-30','reception'),
+(109,'Yash Desai','2026-05-18','2026-05-22','staff'),
+
+(110,'Sanjay Rao','2026-03-10','2026-03-14','admin'),
+(110,'Pallavi Shah','2026-03-30','2026-04-02','staff'),
+(110,'Imran Sheikh','2026-04-12','2026-04-16','staff'),
+(110,'Neelam Kapoor','2026-04-28','2026-05-02','reception'),
+(110,'Tarun Bhat','2026-05-20','2026-05-25','staff');
